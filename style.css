@@ -1,0 +1,232 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0a1628 0%, #1a3a5c 50%, #0a1628 100%);
+    font-family: Arial, sans-serif;
+}
+
+.cabecalho {
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(180deg, #0a1628 0%, #1a3a5c 100%);
+    border-bottom: 4px solid #f5c518;
+}
+
+.cabecalho-link {
+    color: #f5c518;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 20px;
+    border: 2px solid #f5c518;
+    border-radius: 25px;
+    transition: all 0.3s;
+}
+
+.cabecalho-link:hover {
+    background-color: #f5c518;
+    color: #0a1628;
+}
+
+h1 {
+    color: #f5c518;
+    font-size: 24px;
+    text-shadow: 0 0 20px rgba(245, 197, 24, 0.3);
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 0;
+}
+
+main h2 {
+    margin-bottom: 30px;
+    color: #f5c518;
+    text-align: center;
+    padding: 15px 30px;
+    border-left: 4px solid #f5c518;
+    border-right: 4px solid #f5c518;
+    border-radius: 15px;
+    background: rgba(245, 197, 24, 0.05);
+}
+
+footer {
+    background: linear-gradient(0deg, #0a1628 0%, #1a3a5c 100%);
+    padding: 25px 25px 20px;
+    color: #b0c4de;
+    text-align: center;
+    border-top: 4px solid #f5c518;
+    margin-top: 20px;
+}
+
+footer h1 {
+    color: #f5c518;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+footer p {
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+    max-width: 1192px; 
+    width: 100%;
+    padding: 0 20px;
+}
+
+.cartao {
+    width: 280px;
+    height: 360px;
+    position: relative;
+    perspective: 1000px;
+}
+
+.cartao-interno {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s; 
+    transform-style: preserve-3d;
+}
+
+.cartao:hover .cartao-interno {
+    transform: rotateY(180deg);
+}
+
+.cartao-frente, .cartao-verso {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+    backface-visibility: hidden;
+    background: linear-gradient(145deg, #1a2a4a, #0d1b3e);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid rgba(245, 197, 24, 0.3);
+}
+
+.cartao-verso {
+    transform: rotateY(180deg);
+    background: linear-gradient(145deg, #0d1b3e, #1a2a4a);
+    border-color: #f5c518;
+}
+
+.cartao-imagem {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 2px solid rgba(245, 197, 24, 0.2);
+}
+
+.cartao-frente p, .cartao-verso p {
+    padding: 16px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #e0e0e0;
+    text-align: center;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cartao-verso p {
+    color: #f5c518;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 0 0 12px 12px;
+}
+
+/* Efeito de brilho no hover */
+.cartao:hover .cartao-frente {
+    border-color: #f5c518;
+    box-shadow: 0 0 30px rgba(245, 197, 24, 0.2);
+}
+
+.cartao:hover .cartao-verso {
+    box-shadow: 0 0 30px rgba(245, 197, 24, 0.3);
+}
+
+/* Estilo diferente para mito e verdade */
+.cartao:nth-child(odd) .cartao-frente {
+    background: linear-gradient(145deg, #1a2a4a, #2a1a3e);
+}
+
+.cartao:nth-child(even) .cartao-frente {
+    background: linear-gradient(145deg, #1a3a2a, #0d1b3e);
+}
+
+.cartao:nth-child(odd) .cartao-verso {
+    background: linear-gradient(145deg, #2a1a3e, #1a2a4a);
+}
+
+.cartao:nth-child(even) .cartao-verso {
+    background: linear-gradient(145deg, #0d1b3e, #1a3a2a);
+}
+
+/* Ícones nos cards */
+.cartao-frente p::before {
+    content: "⚽ ";
+}
+
+.cartao-verso p::before {
+    content: "💡 ";
+}
+
+@media (max-width: 1200px) {
+    section {
+        max-width: 600px;
+    }
+}
+
+@media (max-width: 650px) {
+    section {
+        max-width: 320px;
+        gap: 16px;
+    }
+    
+    .cartao {
+        width: 100%;
+        height: 340px;
+    }
+    
+    .cartao-imagem {
+        height: 180px;
+    }
+    
+    .cabecalho {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    h1 {
+        font-size: 20px;
+    }
+    
+    main h2 {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+}
